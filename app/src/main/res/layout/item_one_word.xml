@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@android:color/background_light"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true">
+    <ImageView
+        android:id="@+id/word_pic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:id="@+id/word_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:textSize="@dimen/text_size_tip"
+        android:textColor="@android:color/tertiary_text_light"/>
+
+    <TextView
+        android:id="@+id/word_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="left"
+        android:lineSpacingExtra="4dp"
+        android:textSize="@dimen/text_size_content"
+        android:textColor="@android:color/primary_text_light"/>
+
+    <TextView
+        android:id="@+id/word_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_tip"
+        android:textColor="@android:color/tertiary_text_light"/>
+
+    <include layout="@layout/item_footer" />
+</LinearLayout>
