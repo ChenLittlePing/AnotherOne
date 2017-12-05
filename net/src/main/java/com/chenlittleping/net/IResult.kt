@@ -11,6 +11,7 @@ package com.chenlittleping.net
  *
  */
 interface IResult<T> {
+    fun getMessage(): String
     fun isSuccess() : Boolean
     fun getData() : T?
 }

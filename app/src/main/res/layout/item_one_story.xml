@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="left"
         android:textSize="@dimen/text_size_title"
         android:textColor="@android:color/primary_text_light"/>
@@ -28,8 +28,8 @@
         android:id="@+id/story_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="10dp"
         android:textSize="@dimen/text_size_content"
@@ -38,8 +38,8 @@
         android:id="@+id/story_pic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"/>
     <TextView
@@ -48,8 +48,8 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="4dp"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textSize="@dimen/text_size_content"
         android:textColor="@android:color/tertiary_text_light"/>
     <include layout="@layout/item_footer" />

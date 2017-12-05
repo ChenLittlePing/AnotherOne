@@ -1,4 +1,4 @@
-package com.chenlittleping.anotherone_kotlin.home.binder
+package com.chenlittleping.anotherone_kotlin.home.one.binder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

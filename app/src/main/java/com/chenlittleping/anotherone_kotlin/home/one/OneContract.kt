@@ -1,4 +1,4 @@
-package com.chenlittleping.anotherone_kotlin.home
+package com.chenlittleping.anotherone_kotlin.home.one
 
 import com.chenlittleping.anotherone_kotlin.base.mvp.BasePresenter
 import com.chenlittleping.anotherone_kotlin.base.mvp.BaseView
@@ -14,14 +14,12 @@ import com.chenlittleping.anotherone_kotlin.net.bean.home.HomeData
  * @Datetime 2017-11-26 12:43
  *
  */
-interface HomeContract {
+interface OneContract {
     interface View : BaseView<Presenter> {
-        fun updateIdList(list : List<String>?, error : String?)
         fun updateOneList(data : HomeData?, error : String?)
     }
 
     interface Presenter : BasePresenter<View> {
-        fun getIdList()
         fun getOneList(id : String)
     }
 }

@@ -26,7 +26,7 @@ class Subscribe<R> : ISubscribe<R> {
                                 if (r.isSuccess()) {
                                     out.success(r.getData())
                                 } else {
-                                    out.error("获取数据失败")
+                                    out.error(r.getMessage())
                                 }
                             }
                         },

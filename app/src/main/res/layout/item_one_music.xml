@@ -19,8 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="left"
         android:textSize="@dimen/text_size_title"
         android:textColor="@android:color/primary_text_light"/>
@@ -28,28 +28,35 @@
         android:id="@+id/music_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="10dp"
         android:textSize="@dimen/text_size_content"
         android:textColor="@android:color/tertiary_text_light"/>
-    <ImageView
-        android:id="@+id/music_pic"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"/>
+        android:layout_gravity="center">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/music_pic"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+        <ImageView
+            android:id="@+id/play_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_play"/>
+    </FrameLayout>
     <TextView
         android:id="@+id/music_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lineSpacingExtra="4dp"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textSize="@dimen/text_size_tip"
         android:textColor="@android:color/tertiary_text_light"/>
     <TextView
@@ -58,8 +65,8 @@
         android:layout_height="wrap_content"
         android:lineSpacingExtra="4dp"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textSize="@dimen/text_size_content"
         android:textColor="@android:color/tertiary_text_light"/>
     <include layout="@layout/item_footer" />

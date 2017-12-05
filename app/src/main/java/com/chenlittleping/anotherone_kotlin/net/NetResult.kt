@@ -20,11 +20,20 @@ class NetResult<T>: IResult<T> {
 
     private var res: Int = -1
 
+    private var error: Int = 1
+
+    @SerializedName("message")
+    private var msg: String = ""
+
+    override fun getMessage(): String {
+        return msg
+    }
+
     override fun getData(): T? {
         return d
     }
 
     override fun isSuccess(): Boolean {
-        return res == 0
+        return res == 0 || error == 0
     }
 }

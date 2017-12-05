@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="background_app">#80eeeeee</color>
+    <color name="background_mask">#6f000000</color>
 </resources>

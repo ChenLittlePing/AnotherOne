@@ -2,8 +2,8 @@ package com.chenlittleping.anotherone_kotlin.main
 
 import android.support.v4.app.Fragment
 import android.util.Log
-import com.chenlittleping.anotherone_kotlin.base.BaseActivity
 import com.chenlittleping.anotherone_kotlin.R
+import com.chenlittleping.anotherone_kotlin.base.BaseActivity
 import com.chenlittleping.anotherone_kotlin.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 

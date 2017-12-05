@@ -1,4 +1,4 @@
-package com.chenlittleping.anotherone_kotlin.home
+package com.chenlittleping.anotherone_kotlin.home.one
 
 import com.chenlittleping.anotherone_kotlin.net.api.home.HomeRequest
 import com.chenlittleping.anotherone_kotlin.net.bean.home.HomeData
@@ -15,25 +15,14 @@ import rx.subscriptions.CompositeSubscription
  * @Datetime 2017-11-26 13:20
  *
  */
-class HomePresenter(override var view: HomeContract.View): HomeContract.Presenter {
+class OnePresenter(override var view: OneContract.View): OneContract.Presenter {
+
     private var subscription = CompositeSubscription()
 
     override fun detach() {
         if (subscription.hasSubscriptions()) {
             subscription.unsubscribe()
         }
-    }
-
-    override fun getIdList() {
-        subscription.add(HomeRequest().getIdList(object: IOut<List<String>?> {
-            override fun success(r: List<String>?) {
-                view.updateIdList(r, null)
-            }
-
-            override fun error(info: String) {
-                view.updateIdList(null, info)
-            }
-        }))
     }
 
     override fun getOneList(id: String) {

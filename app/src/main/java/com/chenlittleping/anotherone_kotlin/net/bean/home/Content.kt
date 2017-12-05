@@ -14,7 +14,8 @@ class Content {
     var id = 0
     var category = 0
     var display_category = 0
-    var item_id = "1713"
+    var is_regular = 2
+    var item_id = ""
     var title = ""
     var forward = ""
     var img_url = ""
