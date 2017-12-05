@@ -2,6 +2,7 @@ package com.chenlittleping.anotherone_kotlin.player
 
 import android.media.MediaPlayer
 import android.util.Log
+import org.greenrobot.eventbus.EventBus
 import java.io.IOException
 
 
@@ -20,16 +21,17 @@ object Player: IPlayer {
 
     private var player: MediaPlayer = MediaPlayer()
 
-    private var playStatus: IPlayStatus? = null
-
     private var currentUrl: String? = null
 
+    private var playStatus: IPlayStatus? = null
+
     init {
-        player.setOnCompletionListener { onCompletion(it)  }
+        player.setOnCompletionListener {onCompletion(it)}
+        player.setOnPreparedListener({onPrepare(it)})
     }
 
     private fun onCompletion(mp: MediaPlayer) {
-
+        notifyPlayStatus(mp.isPlaying)
     }
 
     override fun play(url: String?): Boolean {
@@ -42,8 +44,7 @@ object Player: IPlayer {
         try {
             player.reset()
             player.setDataSource(url)
-            player.prepare()
-            player.start()
+            player.prepareAsync()
         } catch (e: IOException) {
             Log.e(TAG, "play: ", e)
             notifyPlayStatus(false)
@@ -67,6 +68,11 @@ object Player: IPlayer {
         }
     }
 
+    private fun onPrepare(mp: MediaPlayer) {
+        mp.start()
+        notifyPlayStatus(mp.isPlaying)
+    }
+
     override fun isPlaying(): Boolean {
         return player.isPlaying
     }
@@ -81,6 +87,9 @@ object Player: IPlayer {
     }
 
     private fun notifyPlayStatus(playing: Boolean) {
-        playStatus?.playStatus(playing)
+        var event = PlayerEvent()
+        event.isPlaying = playing
+        event.url = currentUrl
+        EventBus.getDefault().post(event)
     }
 }

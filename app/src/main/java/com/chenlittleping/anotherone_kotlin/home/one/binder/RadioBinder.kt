@@ -8,9 +8,13 @@ import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.anotherone_kotlin.player.IPlayer
 import com.chenlittleping.anotherone_kotlin.player.Player
+import com.chenlittleping.anotherone_kotlin.player.PlayerEvent
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.IBinder
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.ViewHolder
 import kotlinx.android.synthetic.main.item_night_radio.view.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 /**
@@ -26,9 +30,12 @@ class RadioBinder(inflater: LayoutInflater, parent: ViewGroup?):
         ViewHolder(inflater, parent, R.layout.item_night_radio), IBinder<Content> {
 
     private var url: String? = null
-    private var player : IPlayer? =  null
+    private var player: IPlayer? =  null
+
+    private var holder: ViewHolder? = null
 
     override fun bindViewHolder(holder: ViewHolder, item: Content) {
+        this.holder = holder
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
                 .asBitmap().into(holder.itemView.radio_pic)
@@ -45,28 +52,44 @@ class RadioBinder(inflater: LayoutInflater, parent: ViewGroup?):
             holder.itemView.radio_mask.visibility = View.GONE
         }
         holder.itemView.like.text = item.like_count?.toString()
+        url = item.audio_url
         setPlayClick(holder, item)
+        EventBus.getDefault().unregister(this)
+        EventBus.getDefault().register(this)
+        updatePlayStatus(getPlayer().isPlaying(), getPlayer().getMusicUrl())
     }
 
     private fun setPlayClick(holder: ViewHolder, item: Content) {
         holder.itemView.setOnClickListener({
-            if (player == null) {
-                player = Player
-            }
-            if (!player!!.isPlaying()) {
-                url = item.audio_url
-                if (player!!.play(item.audio_url)) {
-                    holder.itemView.regulate_play.setImageResource(R.mipmap.ic_pause)
-                }
+            if (!getPlayer().isPlaying()) {
+                player!!.play(item.audio_url)
             } else {
-                if (player!!.getMusicUrl().equals(url)) {
-                    if (player!!.pause()) {
-                        holder.itemView.regulate_play.setImageResource(R.mipmap.ic_play)
-                    }
+                if (getPlayer().getMusicUrl().equals(url)) {
+                    player!!.pause()
                 } else {
                     player!!.play(item.audio_url)
                 }
             }
         })
+    }
+
+    private fun getPlayer(): IPlayer {
+        if (player == null) {
+            player = Player
+        }
+        return player!!
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onPlayEvent(playerEvent: PlayerEvent) {
+        updatePlayStatus(playerEvent.isPlaying, playerEvent.url)
+    }
+
+    private fun updatePlayStatus(playing: Boolean, url: String?) {
+        if (playing && url.equals(this.url)) {
+            holder?.itemView?.regulate_play?.setImageResource(R.mipmap.ic_pause)
+        } else {
+            holder?.itemView?.regulate_play?.setImageResource(R.mipmap.ic_play)
+        }
     }
 }
