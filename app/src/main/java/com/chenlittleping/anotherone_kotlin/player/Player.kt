@@ -1,8 +1,8 @@
 package com.chenlittleping.anotherone_kotlin.player
 
 import android.media.MediaPlayer
+import android.os.Message
 import android.util.Log
-import org.greenrobot.eventbus.EventBus
 import java.io.IOException
 
 
@@ -19,11 +19,11 @@ object Player: IPlayer {
 
     private val TAG = "Player"
 
+    private val HANDLER_MSG_DURATION = 1
+
     private var player: MediaPlayer = MediaPlayer()
 
-    private var currentUrl: String? = null
-
-    private var playStatus: IPlayStatus? = null
+    private var currentSong: Song? = null
 
     init {
         player.setOnCompletionListener {onCompletion(it)}
@@ -34,16 +34,16 @@ object Player: IPlayer {
         notifyPlayStatus(mp.isPlaying)
     }
 
-    override fun play(url: String?): Boolean {
-        if (url == null) return false
-        if (currentUrl.equals(url)) {
+    override fun play(song: Song?): Boolean {
+        if (song?.url == null) return false
+        if (currentSong?.url.equals(song?.url)) {
             play()
             return true
         }
-        currentUrl = url
+        currentSong = song
         try {
             player.reset()
-            player.setDataSource(url)
+            player.setDataSource(song?.url)
             player.prepareAsync()
         } catch (e: IOException) {
             Log.e(TAG, "play: ", e)
@@ -51,6 +51,20 @@ object Player: IPlayer {
             return false
         }
         return true
+    }
+
+    override fun replay() {
+        play(currentSong)
+    }
+
+    override fun play() {
+        if (!currentSong?.url.isNullOrEmpty()) {
+            if (!player.isPlaying) {
+                player.start()
+                notifyPlayStatus(true)
+                handler.sendEmptyMessage(HANDLER_MSG_DURATION)
+            }
+        }
     }
 
     override fun pause(): Boolean {
@@ -61,16 +75,16 @@ object Player: IPlayer {
         return true
     }
 
-    override fun play() {
-        if (!player.isPlaying) {
-            player.start()
-            notifyPlayStatus(true)
+    override fun seek(position: Int) {
+        if (player != null) {
+            player.seekTo(position)
         }
     }
 
     private fun onPrepare(mp: MediaPlayer) {
         mp.start()
         notifyPlayStatus(mp.isPlaying)
+        handler.sendEmptyMessage(HANDLER_MSG_DURATION)
     }
 
     override fun isPlaying(): Boolean {
@@ -82,14 +96,24 @@ object Player: IPlayer {
         player.release()
     }
 
-    override fun getMusicUrl(): String? {
-        return currentUrl
+    override fun getSong(): Song? {
+        return currentSong
     }
 
     private fun notifyPlayStatus(playing: Boolean) {
-        var event = PlayerEvent()
-        event.isPlaying = playing
-        event.url = currentUrl
-        EventBus.getDefault().post(event)
+        PlayerBroadcaster.postPlayStatus(playing, currentSong)
+    }
+
+    private object handler: android.os.Handler() {
+        override fun handleMessage(msg: Message?) {
+            when (msg?.what) {
+                HANDLER_MSG_DURATION -> {
+                    PlayerBroadcaster.postDurationStatus(currentSong, player.duration, player.currentPosition)
+                    if (player.isPlaying) {
+                        handler.sendEmptyMessageDelayed(HANDLER_MSG_DURATION, 500)
+                    }
+                }
+            }
+        }
     }
 }

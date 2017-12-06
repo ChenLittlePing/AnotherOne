@@ -10,6 +10,7 @@ import com.chenlittleping.anotherone_kotlin.net.bean.common.XiaMiUrl
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.anotherone_kotlin.player.IPlayer
 import com.chenlittleping.anotherone_kotlin.player.Player
+import com.chenlittleping.anotherone_kotlin.player.Song
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.IBinder
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.ViewHolder
 import com.chenlittleping.net.IOut
@@ -50,31 +51,42 @@ class MusicBinder(inflater: LayoutInflater, parent: ViewGroup?):
                 player = Player
             }
             if (!player!!.isPlaying()) {
-                playMusic(item.audio_url)
+                playMusic(item)
             } else {
-                if (player!!.getMusicUrl() == url) {
+                if (player!!.getSong()?.url.equals(url)) {
                     player!!.pause()
                 } else {
-                    playMusic(item.audio_url)
+                    playMusic(item)
                 }
             }
         })
     }
 
-    private fun playMusic(id: String) {
-        if (isInteger(id)) {
-            getXiaMiMusic(id.toInt())
+    private fun playMusic(item: Content) {
+        if (isInteger(item.audio_url)) {
+            getXiaMiMusic(item)
         } else {
-            player?.play(id)
+            player?.play(createSong(item))
         }
     }
 
-    private fun getXiaMiMusic(id: Int) {
-        XiaMiRequest().getXiaMiMusic(id,
+    private fun createSong(item: Content): Song {
+        var song = Song()
+        song.author = item.author!!.user_name
+        song.name = item.title
+        song.fromWhere = if (isInteger(item.audio_url)) "虾米音乐" else "来自ONE一个"
+        song.url = item.audio_url
+        return song
+    }
+
+    private fun getXiaMiMusic(item: Content) {
+        var song = createSong(item)
+        XiaMiRequest().getXiaMiMusic(item.audio_url.toInt(),
             object: IOut<XiaMiUrl?> {
                 override fun success(r: XiaMiUrl?) {
                     url = r?.url
-                    player?.play(r?.url)
+                    song.url = r?.url.toString()
+                    player?.play(song)
                 }
 
                 override fun error(info: String) {

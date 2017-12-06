@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_light">
+    <TextView
+        android:id="@+id/player_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textSize="@dimen/text_size_content"
+        android:textColor="@android:color/tertiary_text_dark"
+        android:text="从你的全世界路过"/>
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:maxHeight="2dp"
+        android:minHeight="2dp"
+        android:thumb="@mipmap/ic_seekbar_thumb"
+        android:progressDrawable="@drawable/seek_bar_style"/>
+    <TextView
+        android:id="@+id/player_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="-5dp"
+        android:textSize="@dimen/text_size_very_small"
+        android:textColor="@android:color/tertiary_text_dark"/>
+
+    <TextView
+        android:id="@+id/player_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="陈XX"
+        android:textColor="@android:color/tertiary_text_dark"
+        android:textSize="@dimen/text_size_very_small" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/player_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_last"/>
+        <ImageView
+            android:id="@+id/player_pause_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:src="@mipmap/ic_player_play"/>
+        <ImageView
+            android:id="@+id/player_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_next"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/player_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:textSize="@dimen/text_size_very_small"
+        android:textColor="@android:color/tertiary_text_dark" />
+</LinearLayout>

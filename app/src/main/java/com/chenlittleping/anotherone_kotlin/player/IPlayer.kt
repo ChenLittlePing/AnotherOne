@@ -11,10 +11,12 @@ package com.chenlittleping.anotherone_kotlin.player
  *
  */
 interface IPlayer {
-    fun play(url: String?): Boolean
-    fun pause(): Boolean
+    fun play(song: Song?): Boolean
     fun play()
+    fun replay()
+    fun pause(): Boolean
+    fun seek(position: Int)
     fun isPlaying(): Boolean
-    fun getMusicUrl(): String?
+    fun getSong(): Song?
     fun release()
 }

@@ -24,7 +24,7 @@ class MovieBinder(inflater: LayoutInflater, parent: ViewGroup?):
         ViewHolder(inflater, parent, R.layout.item_one_movie), IBinder<Content> {
 
     override fun bindViewHolder(holder: ViewHolder, item: Content) {
-        Glide.with(holder!!.itemView.context)
+        Glide.with(holder.itemView.context)
                 .load(item.img_url)
                 .asBitmap().into(holder.itemView.movie_pic)
         holder.itemView.movie_type.text = "- 影视 -"
@@ -33,6 +33,6 @@ class MovieBinder(inflater: LayoutInflater, parent: ViewGroup?):
         holder.itemView.movie_desc.text = item.forward
         holder.itemView.movie_subtitle.text = "——《" + item.subtitle + "》"
         holder.itemView.date.text = item.post_date.split(" ")[0]
-        holder.itemView.like.text = item.like_count?.toString()
+        holder.itemView.like.text = item.like_count.toString()
     }
 }

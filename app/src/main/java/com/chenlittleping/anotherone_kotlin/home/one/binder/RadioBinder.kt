@@ -8,7 +8,8 @@ import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.anotherone_kotlin.player.IPlayer
 import com.chenlittleping.anotherone_kotlin.player.Player
-import com.chenlittleping.anotherone_kotlin.player.PlayerEvent
+import com.chenlittleping.anotherone_kotlin.player.Song
+import com.chenlittleping.anotherone_kotlin.player.event.PlayingEvent
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.IBinder
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.ViewHolder
 import kotlinx.android.synthetic.main.item_night_radio.view.*
@@ -56,21 +57,30 @@ class RadioBinder(inflater: LayoutInflater, parent: ViewGroup?):
         setPlayClick(holder, item)
         EventBus.getDefault().unregister(this)
         EventBus.getDefault().register(this)
-        updatePlayStatus(getPlayer().isPlaying(), getPlayer().getMusicUrl())
+        updatePlayStatus(getPlayer().isPlaying(), getPlayer().getSong()?.url)
     }
 
     private fun setPlayClick(holder: ViewHolder, item: Content) {
         holder.itemView.setOnClickListener({
             if (!getPlayer().isPlaying()) {
-                player!!.play(item.audio_url)
+                player!!.play(createSong(item))
             } else {
-                if (getPlayer().getMusicUrl().equals(url)) {
+                if (getPlayer().getSong()?.url.equals(url)) {
                     player!!.pause()
                 } else {
-                    player!!.play(item.audio_url)
+                    player!!.play(createSong(item))
                 }
             }
         })
+    }
+
+    private fun createSong(item: Content): Song {
+        var song = Song()
+        song.author = item.author!!.user_name
+        song.name = item.title
+        song.fromWhere = "来自ONE·一个"
+        song.url = item.audio_url
+        return song
     }
 
     private fun getPlayer(): IPlayer {
@@ -81,8 +91,8 @@ class RadioBinder(inflater: LayoutInflater, parent: ViewGroup?):
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onPlayEvent(playerEvent: PlayerEvent) {
-        updatePlayStatus(playerEvent.isPlaying, playerEvent.url)
+    fun onPlayerStatusEvent(playingEvent: PlayingEvent) {
+        updatePlayStatus(playingEvent.isPlaying, playingEvent.url)
     }
 
     private fun updatePlayStatus(playing: Boolean, url: String?) {

@@ -1,4 +1,4 @@
-package com.chenlittleping.anotherone_kotlin.player
+package com.chenlittleping.anotherone_kotlin.player.event
 
 
 /**
@@ -10,7 +10,7 @@ package com.chenlittleping.anotherone_kotlin.player
  * @Datetime 2017-12-05 17:07
  *
  */
-class PlayerEvent {
+class PlayingEvent {
     var isPlaying = false
     var url: String? = ""
 }

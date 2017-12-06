@@ -2,14 +2,17 @@ package com.chenlittleping.anotherone_kotlin.player
 
 
 /**
- * 播放状态反馈接口
+ * 歌曲信息
  *
  * @author Chen Xiaoping (562818444@qq.com)
  * @since AnotherOneKotlin
  * @version AnotherOneKotlin
- * @Datetime 2017-12-04 20:34
+ * @Datetime 2017-12-06 09:14
  *
  */
-interface IPlayStatus {
-    fun playStatus(playing: Boolean)
+class Song {
+    var name = ""
+    var author = ""
+    var fromWhere = ""
+    var url = ""
 }
