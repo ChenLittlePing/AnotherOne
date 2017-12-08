@@ -14,7 +14,7 @@
         android:gravity="center"
         android:singleLine="true"
         android:ellipsize="marquee"
-        android:textSize="@dimen/text_size_content"
+        android:textSize="@dimen/text_size_secondary"
         android:textColor="@android:color/tertiary_text_dark"
         android:text="从你的全世界路过"/>
     <SeekBar

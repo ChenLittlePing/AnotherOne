@@ -34,11 +34,13 @@ object Player: IPlayer {
         notifyPlayStatus(mp.isPlaying)
     }
 
-    override fun play(song: Song?): Boolean {
+    override fun play(song: Song?, replay: Boolean): Boolean {
         if (song?.url == null) return false
-        if (currentSong?.url.equals(song?.url)) {
-            play()
-            return true
+        if (!replay) {
+            if (currentSong?.url.equals(song?.url)) {
+                play()
+                return true
+            }
         }
         currentSong = song
         try {
@@ -54,7 +56,7 @@ object Player: IPlayer {
     }
 
     override fun replay() {
-        play(currentSong)
+        play(currentSong, true)
     }
 
     override fun play() {

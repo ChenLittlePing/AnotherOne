@@ -1,9 +1,12 @@
 package com.chenlittleping.anotherone_kotlin.home.one.binder
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.chenlittleping.anotherone_kotlin.R
+import com.chenlittleping.anotherone_kotlin.common.Constant
+import com.chenlittleping.anotherone_kotlin.detail.DetailActivity
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.IBinder
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.ViewHolder
@@ -29,13 +32,13 @@ class StoryBinder(inflater: LayoutInflater, parent: ViewGroup?) :
                 .load(item.img_url)
                 .asBitmap().into(holder.itemView.story_pic)
         var title = when (item.category) {
-            1 -> "- ONE STORY -"
-            2 -> "- 连载 -"
-            3 -> "- 问答 -"
+            Constant.TYPE_ONE_STORY -> "- ONE STORY -"
+            Constant.TYPE_ONE_SERIAL -> "- 连载 -"
+            Constant.TYPE_ONE_ANSWER -> "- 问答 -"
             else -> ""
         }
         var author = when(item.category) {
-            3 -> "网友答"
+            Constant.TYPE_ONE_ANSWER -> "网友答"
             else -> "文/" + item.author?.user_name
         }
         holder.itemView.story_type.text = title
@@ -44,5 +47,11 @@ class StoryBinder(inflater: LayoutInflater, parent: ViewGroup?) :
         holder.itemView.story_desc.text = item.forward
         holder.itemView.date.text = item.post_date.split(" ")[0]
         holder.itemView.like.text = item.like_count?.toString()
+
+        holder.itemView.setOnClickListener({
+            var intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("CONTENT", item)
+            holder.itemView.context.startActivity(intent)
+        })
     }
 }

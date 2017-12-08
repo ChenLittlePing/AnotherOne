@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    android:id="@+id/detail_answer_info">
+    <TextView
+        android:id="@+id/asker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="@dimen/text_size_tip"/>
+
+    <TextView
+        android:id="@+id/question_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:drawablePadding="20dp"
+        android:drawableBottom="@mipmap/question_divi_line"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="@dimen/text_size_normal"
+        android:lineSpacingExtra="10dp"
+        android:letterSpacing="0.1"/>
+
+    <TextView
+        android:id="@+id/answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="@dimen/text_size_tip"/>
+</LinearLayout>

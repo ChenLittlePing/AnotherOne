@@ -22,7 +22,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:gravity="left"
-        android:textSize="@dimen/text_size_title"
+        android:textSize="@dimen/text_size_title_big"
         android:textColor="@android:color/primary_text_light"/>
     <TextView
         android:id="@+id/music_author"
@@ -32,7 +32,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="10dp"
-        android:textSize="@dimen/text_size_content"
+        android:textSize="@dimen/text_size_secondary"
         android:textColor="@android:color/tertiary_text_light"/>
     <FrameLayout
         android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
         android:id="@+id/music_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lineSpacingExtra="4dp"
+        android:lineSpacingExtra="10dp"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -63,11 +63,11 @@
         android:id="@+id/music_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lineSpacingExtra="4dp"
+        android:lineSpacingExtra="10dp"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:textSize="@dimen/text_size_content"
+        android:textSize="@dimen/text_size_secondary"
         android:textColor="@android:color/tertiary_text_light"/>
     <include layout="@layout/item_footer" />
 </LinearLayout>

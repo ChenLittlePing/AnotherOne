@@ -3,8 +3,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="text_size_title">20sp</dimen>
-    <dimen name="text_size_content">14sp</dimen>
+    <dimen name="text_size_title_big">20sp</dimen>
+    <dimen name="text_size_title">16sp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_secondary">14sp</dimen>
     <dimen name="text_size_tip">12sp</dimen>
     <dimen name="text_size_very_small">10sp</dimen>
+    <dimen name="text_size_very_big">24sp</dimen>
 </resources>

@@ -1,10 +1,12 @@
 package com.chenlittleping.anotherone_kotlin.home.one.binder
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.chenlittleping.anotherone_kotlin.R
+import com.chenlittleping.anotherone_kotlin.detail.DetailActivity
 import com.chenlittleping.anotherone_kotlin.net.api.common.XiaMiRequest
 import com.chenlittleping.anotherone_kotlin.net.bean.common.XiaMiUrl
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
@@ -59,6 +61,12 @@ class MusicBinder(inflater: LayoutInflater, parent: ViewGroup?):
                     playMusic(item)
                 }
             }
+        })
+
+        holder.itemView.setOnClickListener({
+            var intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("CONTENT", item)
+            holder.itemView.context.startActivity(intent)
         })
     }
 

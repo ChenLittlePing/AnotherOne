@@ -1,9 +1,11 @@
 package com.chenlittleping.anotherone_kotlin.home.one.binder
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.chenlittleping.anotherone_kotlin.R
+import com.chenlittleping.anotherone_kotlin.detail.DetailActivity
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.IBinder
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.ViewHolder
@@ -34,5 +36,11 @@ class MovieBinder(inflater: LayoutInflater, parent: ViewGroup?):
         holder.itemView.movie_subtitle.text = "——《" + item.subtitle + "》"
         holder.itemView.date.text = item.post_date.split(" ")[0]
         holder.itemView.like.text = item.like_count.toString()
+
+        holder.itemView.setOnClickListener({
+            var intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("CONTENT", item)
+            holder.itemView.context.startActivity(intent)
+        })
     }
 }

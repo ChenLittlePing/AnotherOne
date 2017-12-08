@@ -11,7 +11,7 @@ package com.chenlittleping.anotherone_kotlin.player
  *
  */
 interface IPlayer {
-    fun play(song: Song?): Boolean
+    fun play(song: Song?, replay: Boolean = false): Boolean
     fun play()
     fun replay()
     fun pause(): Boolean

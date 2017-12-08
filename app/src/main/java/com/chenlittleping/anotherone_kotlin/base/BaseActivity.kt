@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import android.view.View
+import kotlinx.android.synthetic.main.title_activity.*
 
 
 /**
@@ -20,6 +21,7 @@ open abstract class BaseActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
         initStatusBar()
+        initBackBtn()
         getData()
         initUI()
     }
@@ -28,6 +30,22 @@ open abstract class BaseActivity : FragmentActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
+    }
+
+    private fun initBackBtn() {
+        back?.setOnClickListener({
+            if (!onBack()) {
+                finish()
+            }
+        })
+    }
+
+    protected fun setTitle(text: String) {
+        title_text?.text = text
+    }
+
+    open protected fun onBack(): Boolean {
+        return false
     }
 
     protected abstract fun getLayout() : Int

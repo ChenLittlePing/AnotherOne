@@ -52,6 +52,7 @@ class FloatPlayer(context: Context): Dialog(context, R.style.FullDialog) {
 
     private fun initPlayerBtn() {
         rootView?.player_last?.setOnClickListener({switchPlayer()})
+        rootView?.player_next?.setOnClickListener({switchPlayer()})
         rootView?.player_pause_play?.setOnClickListener({ playOrPause()})
     }
 

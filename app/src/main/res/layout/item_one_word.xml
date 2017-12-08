@@ -30,8 +30,8 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:gravity="left"
-        android:lineSpacingExtra="4dp"
-        android:textSize="@dimen/text_size_content"
+        android:lineSpacingExtra="10dp"
+        android:textSize="@dimen/text_size_secondary"
         android:textColor="@android:color/primary_text_light"/>
 
     <TextView

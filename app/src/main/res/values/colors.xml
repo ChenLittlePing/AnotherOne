@@ -6,4 +6,5 @@
 
     <color name="background_app">#80eeeeee</color>
     <color name="background_mask">#6f000000</color>
+    <color name="deliver_color">#88eeeeee</color>
 </resources>
