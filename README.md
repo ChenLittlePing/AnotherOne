@@ -5,5 +5,6 @@
 
 * 模式：MVP
 * 网络框架：RxJava+Retrofit+OKHttp
+* 消息通讯：EventBus3.0
 
 API参考自：https://github.com/jokermonn/-Api
