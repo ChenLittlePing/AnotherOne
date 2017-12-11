@@ -40,34 +40,38 @@ class MusicBinder(inflater: LayoutInflater, parent: ViewGroup?):
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
                 .asBitmap().into(holder.itemView.music_pic)
-        holder.itemView.music_type.text = "- 音乐 -"
-        holder.itemView.music_title.text = item.title
-        holder.itemView.music_author.text = "文/" + item.author?.user_name
-        holder.itemView.music_name.text = item.subtitle + " · " + item.audio_author + " | " + item.audio_album
-        holder.itemView.music_desc.text = item.forward
-        holder.itemView.date.text = item.post_date.split(" ")[0]
-        holder.itemView.like.text = item.like_count?.toString()
 
-        holder.itemView.play_status.setOnClickListener({
-            if (player == null) {
-                player = Player
-            }
-            if (!player!!.isPlaying()) {
-                playMusic(item)
-            } else {
-                if (player!!.getSong()?.url.equals(url)) {
-                    player!!.pause()
-                } else {
-                    playMusic(item)
+        holder.itemView.apply {
+            music_type.text = "- 音乐 -"
+            music_title.text = item.title
+            music_author.text = "文/" + item.author?.user_name
+            music_name.text = item.subtitle + " · " + item.audio_author + " | " + item.audio_album
+            music_desc.text = item.forward
+            date.text = item.post_date.split(" ")[0]
+            like.text = item.like_count?.toString()
+
+            play_status.setOnClickListener({
+                if (player == null) {
+                    player = Player
                 }
-            }
-        })
+                if (!player!!.isPlaying()) {
+                    playMusic(item)
+                } else {
+                    if (player!!.getSong()?.url.equals(url)) {
+                        player!!.pause()
+                    } else {
+                        playMusic(item)
+                    }
+                }
+            })
 
-        holder.itemView.setOnClickListener({
-            var intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("CONTENT", item)
-            holder.itemView.context.startActivity(intent)
-        })
+            setOnClickListener({
+                var intent = Intent(holder.itemView.context, DetailActivity::class.java)
+                intent.putExtra("CONTENT", item)
+                holder.itemView.context.startActivity(intent)
+            })
+        }
+
     }
 
     private fun playMusic(item: Content) {

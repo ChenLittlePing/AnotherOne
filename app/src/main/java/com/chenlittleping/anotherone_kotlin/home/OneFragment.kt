@@ -31,7 +31,7 @@ import org.greenrobot.eventbus.ThreadMode
  *
  */
 
-class HomeFragment : Fragment() {
+class OneFragment : Fragment() {
 
     private var rootView: View? = null
 
@@ -124,7 +124,7 @@ class HomeFragment : Fragment() {
         }
 
         override fun getCount(): Int {
-            return this@HomeFragment.idList.size
+            return this@OneFragment.idList.size
         }
     }
 }

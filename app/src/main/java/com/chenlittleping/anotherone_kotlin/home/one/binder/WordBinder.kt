@@ -27,10 +27,13 @@ class WordBinder(inflater: LayoutInflater, parent: ViewGroup?):
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
                 .asBitmap().into(holder.itemView.word_pic)
-        holder.itemView.word_info.text = item.title + " | " + item.pic_info
-        holder.itemView.word_desc.text = item.forward
-        holder.itemView.word_name.text = item.words_info
-        holder.itemView.date.text = item.post_date.split(" ")[0]
-        holder.itemView.like.text = item.like_count?.toString()
+
+        holder.itemView.apply {
+            word_info.text = item.title + " | " + item.pic_info
+            word_desc.text = item.forward
+            word_name.text = item.words_info
+            date.text = item.post_date.split(" ")[0]
+            like.text = item.like_count?.toString()
+        }
     }
 }

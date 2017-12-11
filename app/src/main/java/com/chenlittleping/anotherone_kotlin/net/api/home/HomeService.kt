@@ -1,6 +1,7 @@
 package com.chenlittleping.anotherone_kotlin.net.api.home
 
 import com.chenlittleping.anotherone_kotlin.net.NetResult
+import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.anotherone_kotlin.net.bean.home.HomeData
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -18,9 +19,12 @@ import rx.Observable
  *
  */
 interface HomeService {
-    @GET("onelist/idlist/")
+    @GET("onelist/idlist")
     fun getIdList(@QueryMap map : Map<String, String>) : Observable<NetResult<List<String>?>>
 
-    @GET("onelist/{id}/0/")
+    @GET("onelist/{id}/0")
     fun getOneList(@Path("id") id : String, @QueryMap map : Map<String, String>) : Observable<NetResult<HomeData?>>
+
+    @GET("channel/reading/more/0")
+    fun getReadingList(@QueryMap map : Map<String, String>) : Observable<NetResult<List<Content>?>>
 }

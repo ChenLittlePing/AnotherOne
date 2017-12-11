@@ -29,18 +29,21 @@ class MovieBinder(inflater: LayoutInflater, parent: ViewGroup?):
         Glide.with(holder.itemView.context)
                 .load(item.img_url)
                 .asBitmap().into(holder.itemView.movie_pic)
-        holder.itemView.movie_type.text = "- 影视 -"
-        holder.itemView.movie_title.text = item.title
-        holder.itemView.movie_author.text = "文/" + item.author?.user_name
-        holder.itemView.movie_desc.text = item.forward
-        holder.itemView.movie_subtitle.text = "——《" + item.subtitle + "》"
-        holder.itemView.date.text = item.post_date.split(" ")[0]
-        holder.itemView.like.text = item.like_count.toString()
 
-        holder.itemView.setOnClickListener({
-            var intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("CONTENT", item)
-            holder.itemView.context.startActivity(intent)
-        })
+        holder.itemView.apply {
+            movie_type.text = "- 影视 -"
+            movie_title.text = item.title
+            movie_author.text = "文/" + item.author?.user_name
+            movie_desc.text = item.forward
+            movie_subtitle.text = "——《" + item.subtitle + "》"
+            date.text = item.post_date.split(" ")[0]
+            like.text = item.like_count.toString()
+
+            setOnClickListener({
+                var intent = Intent(holder.itemView.context, DetailActivity::class.java)
+                intent.putExtra("CONTENT", item)
+                holder.itemView.context.startActivity(intent)
+            })
+        }
     }
 }

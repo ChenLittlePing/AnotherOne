@@ -1,6 +1,7 @@
 package com.chenlittleping.anotherone_kotlin.net.api.home
 
 import com.chenlittleping.anotherone_kotlin.net.BaseRequest
+import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.anotherone_kotlin.net.bean.home.HomeData
 import com.chenlittleping.net.IOut
 import com.chenlittleping.net.Subscribe
@@ -25,5 +26,9 @@ class HomeRequest : BaseRequest<HomeService> {
 
     fun getOneList(id : String, out : IOut<HomeData?>) : Subscription {
         return Subscribe<HomeData>().perform(service.getOneList(id, buildQueryMap()), out)
+    }
+
+    fun getReadingList(out : IOut<List<Content>?>) : Subscription {
+        return Subscribe<List<Content>>().perform(service.getReadingList(buildQueryMap()), out)
     }
 }

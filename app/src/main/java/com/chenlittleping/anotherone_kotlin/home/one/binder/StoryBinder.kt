@@ -41,17 +41,20 @@ class StoryBinder(inflater: LayoutInflater, parent: ViewGroup?) :
             Constant.TYPE_ONE_ANSWER -> "网友答"
             else -> "文/" + item.author?.user_name
         }
-        holder.itemView.story_type.text = title
-        holder.itemView.story_title.text = item.title
-        holder.itemView.story_author.text = author
-        holder.itemView.story_desc.text = item.forward
-        holder.itemView.date.text = item.post_date.split(" ")[0]
-        holder.itemView.like.text = item.like_count?.toString()
 
-        holder.itemView.setOnClickListener({
-            var intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra("CONTENT", item)
-            holder.itemView.context.startActivity(intent)
-        })
+        holder.itemView.apply {
+            story_type.text = title
+            story_title.text = item.title
+            story_author.text = author
+            story_desc.text = item.forward
+            date.text = item.post_date.split(" ")[0]
+            like.text = item.like_count?.toString()
+
+            setOnClickListener({
+                var intent = Intent(holder.itemView.context, DetailActivity::class.java)
+                intent.putExtra("CONTENT", item)
+                holder.itemView.context.startActivity(intent)
+            })
+        }
     }
 }
