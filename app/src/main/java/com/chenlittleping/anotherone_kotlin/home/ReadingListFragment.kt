@@ -12,6 +12,7 @@ import com.chenlittleping.anotherone_kotlin.home.one.OneAdapter
 import com.chenlittleping.anotherone_kotlin.net.api.home.HomeRequest
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
 import com.chenlittleping.net.IOut
+import com.coder.zzq.smartshow.toast.SmartToast
 import kotlinx.android.synthetic.main.fragment_reading_list.view.*
 import kotlinx.android.synthetic.main.title_activity.view.*
 
@@ -71,7 +72,7 @@ class ReadingListFragment: Fragment() {
 
             override fun error(info: String) {
                 rootView.swipe.isRefreshing = false
-                Toast.makeText(this@ReadingListFragment.activity, info, Toast.LENGTH_SHORT).show()
+                SmartToast.show(info)
             }
         })
     }

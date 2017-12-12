@@ -8,13 +8,13 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.home.one.OneFragment
 import com.chenlittleping.anotherone_kotlin.net.api.home.HomeRequest
 import com.chenlittleping.anotherone_kotlin.player.event.DurationEvent
 import com.chenlittleping.anotherone_kotlin.player.event.PlayingEvent
 import com.chenlittleping.net.IOut
+import com.coder.zzq.smartshow.toast.SmartToast
 import kotlinx.android.synthetic.main.fragment_home.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -112,7 +112,7 @@ class OneFragment : Fragment() {
             }
 
             override fun error(info: String) {
-                Toast.makeText(context, info, Toast.LENGTH_SHORT).show()
+                SmartToast.show(info)
             }
         })
     }

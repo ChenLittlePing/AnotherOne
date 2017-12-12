@@ -16,6 +16,7 @@ import com.chenlittleping.anotherone_kotlin.player.Song
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.IBinder
 import com.chenlittleping.anotherone_kotlin.view.recyclerview.ViewHolder
 import com.chenlittleping.net.IOut
+import com.coder.zzq.smartshow.toast.SmartToast
 import kotlinx.android.synthetic.main.item_footer.view.*
 import kotlinx.android.synthetic.main.item_one_music.view.*
 import java.util.regex.Pattern
@@ -102,7 +103,7 @@ class MusicBinder(inflater: LayoutInflater, parent: ViewGroup?):
                 }
 
                 override fun error(info: String) {
-                    Toast.makeText(itemView.context, info, Toast.LENGTH_SHORT).show()
+                    SmartToast.show(info)
                 }
 
         })

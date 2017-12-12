@@ -2,7 +2,6 @@ package com.chenlittleping.anotherone_kotlin.detail
 
 import android.graphics.drawable.AnimationDrawable
 import android.view.View
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.base.BaseActivity
@@ -13,6 +12,7 @@ import com.chenlittleping.anotherone_kotlin.net.bean.detail.StoryDetail
 import com.chenlittleping.anotherone_kotlin.net.bean.detail.movie.MovieDetail
 import com.chenlittleping.anotherone_kotlin.net.bean.detail.question.QuestionDetail
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Content
+import com.coder.zzq.smartshow.toast.SmartToast
 import com.zzhoujay.richtext.RichText
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.detail_answer_info.*
@@ -80,7 +80,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     override fun updateEssayDetail(detail: StoryDetail?, error: String?) {
         hideLoading()
         if (error != null) {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            SmartToast.show(error)
             return
         }
 
@@ -107,7 +107,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     override fun updateAnswerDetail(detail: QuestionDetail?, error: String?) {
         hideLoading()
         if (error != null) {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            SmartToast.show(error)
             return
         }
         detail_answer_info.visibility = View.VISIBLE
@@ -126,7 +126,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     override fun updateSerialDetail(detail: SerialDetail?, error: String?) {
         hideLoading()
         if (error != null) {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            SmartToast.show(error)
             return
         }
 
@@ -143,7 +143,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     override fun updateMovieDetail(detail: MovieDetail?, error: String?) {
         hideLoading()
         if (error != null) {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            SmartToast.show(error)
             return
         }
 
@@ -172,7 +172,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     override fun updateMusicDetail(detail: MusicDetail?, error: String?) {
         hideLoading()
         if (error != null) {
-            Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+            SmartToast.show(error)
             return
         }
         detail_music_header.visibility = View.VISIBLE
