@@ -26,7 +26,8 @@ class WordBinder(inflater: LayoutInflater, parent: ViewGroup?):
     override fun bindViewHolder(holder: ViewHolder, item: Content) {
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
-                .asBitmap().into(holder.itemView.word_pic)
+                .crossFade()
+                .into(holder.itemView.word_pic)
 
         holder.itemView.apply {
             word_info.text = item.title + " | " + item.pic_info

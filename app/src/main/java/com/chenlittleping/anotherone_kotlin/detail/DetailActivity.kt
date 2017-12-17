@@ -97,6 +97,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
             author_detail_name.text = detail?.hpAuthor + " " + it1
             Glide.with(this@DetailActivity)
                     .load(detail?.authors?.get(0)?.web_url)
+                    .crossFade()
                     .into(author_detail_photo)
             author_detail_layout.visibility = View.VISIBLE
         }
@@ -148,7 +149,9 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         }
 
         detail_movie_header.visibility = View.VISIBLE
-        Glide.with(this@DetailActivity).load(content!!.img_url)
+        Glide.with(this@DetailActivity)
+                .load(content!!.img_url)
+                .crossFade()
                 .into(movie_cover)
         movie_name.text = "《" + content!!.subtitle + "》"
 
@@ -163,6 +166,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         author_detail_name.text = movieData?.author_list?.get(0)?.user_name
         Glide.with(this@DetailActivity)
                 .load(movieData?.author_list?.get(0)?.web_url)
+                .crossFade()
                 .into(author_detail_photo)
 
         author_detail_layout.visibility = View.VISIBLE
@@ -177,22 +181,25 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         }
         detail_music_header.visibility = View.VISIBLE
         Glide.with(this@DetailActivity).load(detail!!.cover)
+                .crossFade()
                 .into(music_cover)
-        Glide.with(this@DetailActivity).load(detail!!.feeds_cover)
+        Glide.with(this@DetailActivity).load(detail.feeds_cover)
+                .crossFade()
                 .into(music_bg)
         music_name.text =  content!!.subtitle + " · " + content!!.audio_author +
                             " | " + content!!.audio_album
 
-        story_title.text = detail?.story_title
-        story_author.text = "文/" + detail?.author_list?.get(0)?.user_name
+        story_title.text = detail.story_title
+        story_author.text = "文/" + detail.author_list?.get(0)?.user_name
         story_author.visibility = View.VISIBLE
-        story_author_introduce.text = detail?.charge_edt + " " + detail?.editor_email
+        story_author_introduce.text = detail.charge_edt + " " + detail.editor_email
 
         renderHtmlText(detail.story)
 
-        author_detail_name.text = detail?.story_author?.user_name + " " + detail?.story_author?.wb_name
+        author_detail_name.text = detail.story_author?.user_name + " " + detail.story_author?.wb_name
         Glide.with(this@DetailActivity)
-                .load(detail?.story_author?.web_url)
+                .load(detail.story_author?.web_url)
+                .crossFade()
                 .into(author_detail_photo)
         author_detail_layout.visibility = View.VISIBLE
 

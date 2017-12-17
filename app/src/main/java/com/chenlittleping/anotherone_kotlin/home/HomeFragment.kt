@@ -5,20 +5,27 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.home.one.OneFragment
 import com.chenlittleping.anotherone_kotlin.net.api.home.HomeRequest
+import com.chenlittleping.anotherone_kotlin.net.bean.home.Weather
 import com.chenlittleping.anotherone_kotlin.player.event.DurationEvent
 import com.chenlittleping.anotherone_kotlin.player.event.PlayingEvent
 import com.chenlittleping.net.IOut
 import com.coder.zzq.smartshow.toast.SmartToast
 import kotlinx.android.synthetic.main.fragment_home.view.*
+import kotlinx.android.synthetic.main.title_one.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.text.SimpleDateFormat
+import java.util.*
+
+
 
 
 /**
@@ -31,7 +38,7 @@ import org.greenrobot.eventbus.ThreadMode
  *
  */
 
-class OneFragment : Fragment() {
+class HomeFragment : Fragment(), OneFragment.IUpdateWeather {
 
     private var rootView: View? = null
 
@@ -40,6 +47,12 @@ class OneFragment : Fragment() {
     private var idList = ArrayList<String>()
 
     private var floatPlayer: FloatPlayer? = null
+
+    private var date = SimpleDateFormat("yyyy-MM-dd")
+
+    private var calendar = Calendar.getInstance()
+
+    private var curPagePost = 0
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -57,6 +70,28 @@ class OneFragment : Fragment() {
     private fun initViewPager(rootView: View?) {
         adapter = Adapter(childFragmentManager)
         rootView?.viewPage?.adapter = adapter
+        rootView?.viewPage?.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                curPagePost = position
+                if (position == 0) {
+                    rootView?.date?.text = date.format(Date())
+                    rootView?.weather?.visibility = View.VISIBLE
+                } else {
+                    rootView?.weather?.visibility = View.INVISIBLE
+                    calendar.time = Date()//把当前时间赋给日历
+                    calendar.add(Calendar.DAY_OF_MONTH, -position)  //设置为前一天
+                    var before = calendar.time
+                    rootView?.date?.text = date.format(before)
+                }
+            }
+
+        })
     }
 
     private fun initFloatPlayer(rootView: View?) {
@@ -120,11 +155,20 @@ class OneFragment : Fragment() {
     inner class Adapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment {
-            return OneFragment.newInstance(idList[position])
+            return OneFragment.newInstance(idList[position], this@HomeFragment)
         }
 
         override fun getCount(): Int {
-            return this@OneFragment.idList.size
+            return this@HomeFragment.idList.size
+        }
+    }
+
+    override fun onWeatherUpdate(weather: Weather?) {
+        if (curPagePost == 0) {
+            rootView?.date?.text = weather?.date
+            rootView?.weather?.text = weather?.cityName + "  " +
+                    weather?.climate + "  " +
+                    weather?.temperature + "℃"
         }
     }
 }

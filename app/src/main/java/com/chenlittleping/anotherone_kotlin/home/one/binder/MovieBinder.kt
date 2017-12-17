@@ -28,7 +28,8 @@ class MovieBinder(inflater: LayoutInflater, parent: ViewGroup?):
     override fun bindViewHolder(holder: ViewHolder, item: Content) {
         Glide.with(holder.itemView.context)
                 .load(item.img_url)
-                .asBitmap().into(holder.itemView.movie_pic)
+                .crossFade()
+                .into(holder.itemView.movie_pic)
 
         holder.itemView.apply {
             movie_type.text = "- 影视 -"

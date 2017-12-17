@@ -30,7 +30,8 @@ class StoryBinder(inflater: LayoutInflater, parent: ViewGroup?) :
     override fun bindViewHolder(holder: ViewHolder, item: Content) {
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
-                .asBitmap().into(holder.itemView.story_pic)
+                .crossFade()
+                .into(holder.itemView.story_pic)
         var title = when (item.category) {
             Constant.TYPE_ONE_STORY -> "- ONE STORY -"
             Constant.TYPE_ONE_SERIAL -> "- 连载 -"

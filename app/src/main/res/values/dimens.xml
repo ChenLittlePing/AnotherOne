@@ -10,4 +10,6 @@
     <dimen name="text_size_tip">12sp</dimen>
     <dimen name="text_size_very_small">10sp</dimen>
     <dimen name="text_size_very_big">24sp</dimen>
+
+    <dimen name="item_margin">10dp</dimen>
 </resources>

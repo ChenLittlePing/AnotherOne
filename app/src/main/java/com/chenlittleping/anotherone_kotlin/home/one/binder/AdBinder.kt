@@ -25,6 +25,7 @@ class AdBinder(inflater: LayoutInflater, parent: ViewGroup?):
     override fun bindViewHolder(holder: ViewHolder, item: Content) {
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
-                .asBitmap().into(holder.itemView.ad_img)
+                .crossFade()
+                .into(holder.itemView.ad_img)
     }
 }

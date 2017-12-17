@@ -3,7 +3,6 @@ package com.chenlittleping.anotherone_kotlin.home.one.binder
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.detail.DetailActivity
@@ -40,7 +39,8 @@ class MusicBinder(inflater: LayoutInflater, parent: ViewGroup?):
     override fun bindViewHolder(holder: ViewHolder, item: Content) {
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
-                .asBitmap().into(holder.itemView.music_pic)
+                .crossFade()
+                .into(holder.itemView.music_pic)
 
         holder.itemView.apply {
             music_type.text = "- 音乐 -"

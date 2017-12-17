@@ -10,7 +10,6 @@ import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.net.bean.home.HomeData
 import com.chenlittleping.anotherone_kotlin.net.bean.home.Weather
 import kotlinx.android.synthetic.main.fragment_one.view.*
-import kotlinx.android.synthetic.main.title_one.view.*
 
 
 /**
@@ -33,7 +32,10 @@ class OneFragment : Fragment(), OneContract.View {
     private var listId: String? = null
 
     companion object {
-        public fun newInstance(id: String): Fragment {
+        var iUpdateWeather: IUpdateWeather? = null
+
+        fun newInstance(id: String, l: IUpdateWeather): Fragment {
+            iUpdateWeather = l
             var bundle = Bundle()
             bundle.putString("ID", id)
             var fragment = OneFragment()
@@ -70,19 +72,17 @@ class OneFragment : Fragment(), OneContract.View {
         rootView?.swipe?.setOnRefreshListener { presenter.getOneList(listId!!) }
     }
 
-    private fun updateDateAndWeather(weather: Weather?) {
-        rootView?.date?.text = weather?.date
-        rootView?.weather?.text = weather?.cityName + "  " +
-                weather?.climate + "  " +
-                weather?.temperature + "℃"
-    }
-
     override fun updateOneList(data : HomeData?, error: String?) {
         if (error != null) {
             return
         }
         rootView?.swipe?.isRefreshing = false
         adapter.bind(data?.content_list)
-        updateDateAndWeather(data?.weather)
+
+        iUpdateWeather?.onWeatherUpdate(data?.weather)
+    }
+
+    interface IUpdateWeather {
+        fun onWeatherUpdate(weather: Weather?)
     }
 }

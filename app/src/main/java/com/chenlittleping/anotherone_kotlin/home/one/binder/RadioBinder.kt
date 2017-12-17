@@ -39,13 +39,15 @@ class RadioBinder(inflater: LayoutInflater, parent: ViewGroup?):
         this.holder = holder
         Glide.with(holder!!.itemView.context)
                 .load(item.img_url)
-                .asBitmap().into(holder.itemView.radio_pic)
+                .crossFade()
+                .into(holder.itemView.radio_pic)
         if (item.is_regular == 1) {
             holder.itemView.radio_volume.text = item.volume
             holder.itemView.radio_title.text = item.title
             holder.itemView.author_name.text = item.author?.user_name
             Glide.with(holder.itemView.context)
                     .load(item.author?.web_url)
+                    .crossFade()
                     .into(holder.itemView.author_img)
         } else {
             holder.itemView.fm_logo.visibility = View.GONE
