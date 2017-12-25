@@ -5,7 +5,8 @@
     android:background="@android:color/black"
     android:layout_marginBottom="@dimen/item_margin"
     android:foreground="?attr/selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    android:stateListAnimator="@animator/item_pressed_raise">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

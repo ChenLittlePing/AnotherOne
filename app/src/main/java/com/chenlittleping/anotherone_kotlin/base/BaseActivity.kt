@@ -2,8 +2,8 @@ package com.chenlittleping.anotherone_kotlin.base
 
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
 import android.view.View
+import com.aitangba.swipeback.SwipeBackActivity
 import kotlinx.android.synthetic.main.title_activity.*
 
 
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.title_activity.*
  * @Datetime 2017-11-22 14:37
  *
  */
-open abstract class BaseActivity : FragmentActivity() {
+open abstract class BaseActivity : SwipeBackActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())

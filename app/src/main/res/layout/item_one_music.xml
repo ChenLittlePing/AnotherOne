@@ -5,7 +5,8 @@
     android:layout_marginBottom="@dimen/item_margin"
     android:background="@android:color/white"
     android:foreground="?attr/selectableItemBackground"
-    android:clickable="true">
+    android:clickable="true"
+    android:stateListAnimator="@animator/item_pressed_raise">
     <TextView
         android:id="@+id/music_type"
         android:layout_width="match_parent"

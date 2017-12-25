@@ -1,6 +1,7 @@
 package com.chenlittleping.anotherone_kotlin.main
 
 import android.app.Application
+import com.aitangba.swipeback.ActivityLifecycleHelper
 import com.coder.zzq.smartshow.toast.SmartToast
 
 
@@ -17,5 +18,6 @@ class MainApp: Application() {
     override fun onCreate() {
         super.onCreate()
         SmartToast.plainToast(this)
+        registerActivityLifecycleCallbacks(ActivityLifecycleHelper.build())
     }
 }

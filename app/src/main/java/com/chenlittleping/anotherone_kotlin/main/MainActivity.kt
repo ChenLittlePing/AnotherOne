@@ -2,7 +2,6 @@ package com.chenlittleping.anotherone_kotlin.main
 
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
-import android.util.Log
 import android.view.MenuItem
 import com.chenlittleping.anotherone_kotlin.R
 import com.chenlittleping.anotherone_kotlin.R.id.*
@@ -31,12 +30,6 @@ class MainActivity : BaseActivity() {
         fragments.add(ReadingListFragment())
         fragments.add(AboutFragment())
         viewPage.adapter = MainPageAdapter(supportFragmentManager, fragments)
-        viewPage.setOnClickListener(
-                {view -> run {
-                    Log.d("", "")
-                    view.id
-                }}
-        )
         viewPage.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

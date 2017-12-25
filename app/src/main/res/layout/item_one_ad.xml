@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/item_margin"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:stateListAnimator="@animator/item_pressed_raise">
     <ImageView
         android:id="@+id/ad_img"
         android:layout_width="match_parent"
